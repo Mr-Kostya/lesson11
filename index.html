@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сalculator</title>
+</head>
+<body>
+    
+
+<script>
+
+    function createCalculator(initialValue) {
+  let value = initialValue ?? 0;
+
+  const checkNaN = (checkValue) => {
+    if (typeof checkValue !== "number") {
+      console.error(`NaN value is ${value}`);
+      return false;
+    }
+    return true;
+  };
+
+  const add = function (addValue) {
+    if (!checkNaN(addValue)) {
+      return value;
+    }
+    value = value + addValue;
+    return value;
+  };
+
+  const sub = function (subValue) {
+    if (!checkNaN(subValue)) {
+      return value;
+    }
+    value = value - subValue;
+    return value;
+  };
+
+  const set = function (setValue) {
+    if (!checkNaN(setValue)) {
+      return value;
+    }
+    value = setValue;
+  };
+
+  const get = function () {
+    return value;
+  };
+
+  return {
+    add,
+    sub,
+    set,
+    get
+  };
+}
+
+
+const calculator = createCalculator(100);
+
+console.log(calculator.add(10)); // 110
+console.log(calculator.add(10)); // 120
+console.log(calculator.sub(20)); // 100
+
+console.log(calculator.set(20)); //
+console.log(calculator.add(10)); // 30
+console.log(calculator.add(10)); // 40
+console.log(calculator.add('qwe')); // NaN и значение 40 не менять
+console.log(calculator.get()); // 40
+
+</script>
+    
+</body>
+</html>
